@@ -8,3 +8,4 @@ export default function ArticleTemp({title, thumb, }) {
         </div>
     )
 }
+ 

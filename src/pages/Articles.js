@@ -9,7 +9,7 @@ export default function Articles(props) {
 
     useEffect(
         function() {
-            axios(`http://localhost:1337/categories/${props.id}`)
+            axios(`https://article-api-christian.herokuapp.com/categories/${props.id}`)
             .then(response => setArticles(response))
         },[setArticles, props]
     )
@@ -26,7 +26,7 @@ export default function Articles(props) {
                     
                     return(
                         
-                        <ArticleTemp id={article.id} key={article.id} title={article.Title} thumb={`http://localhost:1337${path}`}  />
+                        <ArticleTemp id={article.id} key={article.id} title={article.Title} thumb={`https://article-api-christian.herokuapp.com${path}`}  />
                     )
                 })}
             </section>

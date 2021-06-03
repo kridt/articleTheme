@@ -10,7 +10,7 @@ export default function Categories(props) {
 
     useEffect(
         function() {
-            axios(`http://localhost:1337/sections/${props.id}`)
+            axios(`https://article-api-christian.herokuapp.com/sections/${props.id}`)
             .then(response => setCategories(response))
         },[setCategories]
     )

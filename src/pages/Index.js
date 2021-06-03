@@ -1,6 +1,7 @@
 import { Link } from '@reach/router';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import ArticleTemp from '../components/ArticleTemp';
 
 
 
@@ -11,11 +12,25 @@ export default function Index() {
     
     useEffect(
         function() {
-            axios(`http://localhost:1337/sections `)
+            axios(`https://article-api-christian.herokuapp.com/sections `)
             .then(response => setSections(response))
         },[setSections]
     )
+
+
+    var [allArticles, setAllArticles] = useState({});
+
     
+    useEffect(
+        function() {
+            axios(`https://article-api-christian.herokuapp.com/articles `)
+            .then(response => setAllArticles(response))
+        },[setAllArticles]
+    )
+    
+
+    console.log(allArticles);
+
     return (
         <div>
             <h1>hello</h1>
@@ -30,15 +45,18 @@ export default function Index() {
                     })}
                 </ul>
             </nav>
-           {/*  <section className="allArticles">
-                {articles && articles.data?.map(function(article) {
-                    console.log(article);
-                    return(
-                        
-                        <ArticleTemp key={article.id} title={article.Title} thumb={article.image.url} />
-                    )
-                })}
-            </section> */}
+
+
+           <section>
+                    {allArticles && allArticles.data?.map(function(allArticle) {
+
+                        console.log(allArticle);
+                        return(
+
+                            <ArticleTemp title={allArticle.Title}  thumb={"https://article-api-christian.herokuapp.com"+allArticle.image.formats.thumbnail.url}  id={allArticle.id} />
+                        )
+                    })}
+           </section>
 
         </div>
     )
